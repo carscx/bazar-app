@@ -1,0 +1,74 @@
+<div class="panel panel-default" ng-show="productosSeleccionados.length > 0">
+	<div class="panel-body">
+		<h4>
+			Productos en la venta actual {{productosSeleccionados.length}}
+			<div class="btn-group">
+				<button type="button" class="btn btn-success" ng-click="open(productosSeleccionados,'boton')"><i class="fa fa-eye"></i> Ver Detalle Venta</button>
+				<button type="button" class="btn btn-danger" ng-click="eliminaTotalVenta()"><i class="fa fa-trash"></i> Eliminar Venta</button>
+			</div>
+		</h4>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="col-md-2">
+			<select ng-model="entryLimit" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+		</div>
+		<div class="col-md-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+				<input type="text" ng-model="search" ng-change="filter()" placeholder="Buscar productos..." class="form-control" autocomplete="off" focus>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+		<table class="table table-striped">
+			<tr ng-show="productos.length==0">
+				<td style="vertical-align:middle;"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i>&nbsp;Estamos trayendo los productos</td>
+			</tr>
+			<thead ng-show="productos.length>0">
+				<th><a ng-click="sort_by('id_producto');" tooltip-placement="top" tooltip="Ordenar por Id">Id <i class="fa fa-sort"></i></a></th>
+				<th><a ng-click="sort_by('nombre_producto');" tooltip-placement="top" tooltip="Ordenar por Nombre">Nombre <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('nombre_marca');" tooltip-placement="top" tooltip="Ordenar por Marca">Marca <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('precio_producto');" tooltip-placement="top" tooltip="Ordenar por Precio de Venta">PVP <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('cantidad_producto');" tooltip-placement="top" tooltip="Ordenar por Cantidad">Cantidad <i class="fa fa-sort"></i></a></th>
+				<th class="text-right"><span>Acciones</span></th>
+			</thead>
+			<tr ng-repeat="p in filtered = (productos | filter:ignoreAccents | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+				<td>{{p.id_producto}}</td>
+				<td>{{p.nombre_producto}}</td>
+				<td class="text-center">{{p.nombre_marca}}</td>
+				<td class="text-center">{{p.precio_producto | currency}}</td>
+				<td class="text-center">{{p.cantidad_producto}}</td>
+				<td class="text-right noselect">
+					<form name="formVenta">
+						<!-- <div class="input-group"> -->
+							<input type="number" class="text-center input-lg " min="0" max="{{p.cantidad_producto}}" ng-enter="open(p,'listado')" ng-model="p.cantidad_a_vender" name="cantidad_a_vender_{{p.id_producto}}" placeholder="0" only-numbers />
+							<!-- <span class="input-group-addon" id="basic-addon2"> --><button type="button" class="btn btn-success" ng-click="open(p,'listado');">Vender <i class="fa fa-check"></i></button><!-- </span> -->
+						<!-- </div> -->
+					</form>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div class="col-md-12" ng-hide="filteredItems != 0">
+            <div class="col-md-12">
+                <h4 class="text-center"><i class="fa fa-search fa-3x fa-spin"></i> No hay productos con ese nombre</h4>
+            </div>
+        </div>
+		<div class="col-md-12" ng-show="filteredItems > 0">
+		    <pagination total-items="filteredItems" ng-model="currentPage" max-size="10" class="pagination-lg" boundary-links="true" previous-text="&laquo;" next-text="&raquo;" first-text="Primero" last-text="Último"></pagination>
+        	<div class="clearfix"></div>
+        	<p>Mostrando {{ entryLimit }} de {{productos.length}} productos</p>
+    	</div>
+	</div>
+</div>
+

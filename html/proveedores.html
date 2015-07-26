@@ -1,0 +1,71 @@
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+ 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+<div class="btn-group">
+	<button type="button" class="btn btn-info" ng-click="openNuevoProveedor()">Añadir Proveedor <i class="fa fa-plus-square"></i></button>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="col-md-2">
+			<select ng-model="entryLimit" class="form-control">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+		</div>
+		<div class="col-md-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+				<input type="text" ng-model="search" ng-change="filter()" placeholder="Buscar proveedores..." class="form-control" autocomplete="off" focus>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+		<table class="table table-striped">
+			<tr ng-show="proveedores.length==0">
+				<td style="vertical-align:middle;"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i>&nbsp;Estamos trayendo los proveedores</td>
+			</tr>
+			<thead ng-show="proveedores.length>0">
+				<th class="col-id"><a ng-click="sort_by('id_proveedor');">Id <i class="fa fa-sort"></i></a></th>
+				<th class="col-nombre"><a ng-click="sort_by('nombre_proveedor');">Nombre <i class="fa fa-sort"></i></a></th>
+				<!--<th class="col-direccion text-center"><a ng-click="sort_by('direccion_proveedor');">Dirección <i class="fa fa-sort"></i></a></th>
+				<th class="col-telefono text-center"><a ng-click="sort_by('tel_proveedor');">Teléfono <i class="fa fa-sort"></i></a></th>
+				<th class="col-mail text-center"><a ng-click="sort_by('mail_proveedor');">E-mail <i class="fa fa-sort"></i></a></th>
+				<th class="col-web text-center"><a ng-click="sort_by('web_proveedor');">Web proveedor <i class="fa fa-sort"></i></a></th>-->
+				<th class="col-observaciones text-center"><a ng-click="sort_by('observaciones_proveedor');">Observaciones <i class="fa fa-sort"></i></a></th>
+				<th><span>Acciones</span></th>
+			</thead>
+			<tr ng-repeat="prov in filtered = (proveedores | filter:ignoreAccents | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+				<td>{{prov.id_proveedor}}</td>
+				<td>{{prov.nombre_proveedor}}</td>
+				<!--<td class="text-center">{{prov.direccion_proveedor}}</td>
+				<td class="text-center">{{prov.tel_proveedor}}</td>
+				<td class="text-center email_prov">{{prov.mail_proveedor}}</td>
+				<td class="text-center email_prov">{{prov.web_proveedor}}</td>-->
+				<td class="text-center">{{prov.observaciones_proveedor}}</td>
+				<td class="col-accion text-right">
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-success" ng-click="open(p,'lg');"><i class="fa fa-edit"></i></button>
+						<button type="button" class="btn btn-danger" ng-click="borrar(p);"><i class="fa fa-trash-o"></i></button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4 class="text-center"><i class="fa fa-search fa-3x fa-spin"></i> No hay marcas con ese nombre</h4>
+            </div>
+        </div>
+		<div class="col-md-12" ng-show="filteredItems > 0">
+        	<pagination total-items="filteredItems" ng-model="currentPage" max-size="10" class="pagination-lg" boundary-links="true" previous-text="&laquo;" next-text="&raquo;" first-text="Primero" last-text="Último"></pagination>
+        	<div class="clearfix"></div>
+        	<p>Mostrando {{ entryLimit }} de {{marcas.length}} marcas</p>
+    	</div>
+	</div>
+</div>
+

@@ -1,0 +1,45 @@
+ <button type="button" class="close" ng-click="cancel();">
+        <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
+    </button>
+    <div class="modal-header">
+        <h3 class="modal-title">Nuevo Proveedor</h3>
+    </div>
+    <div class="modal-body">
+		<div class="alert {{claseMensaje}}" ng-show="resultado">
+		 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+		</div>
+		<form name="nprovform" class="form-horizontal" role="form" novalidate>
+			<form-element label="Nombre">
+                <input type="text" class="autoFocus form-control" name="nombre_proveedor" placeholder="Nombre" ng-model="nprovform.data.nombre_proveedor" autocomplete="off" focus />
+            </form-element>
+            <form-element label="Direccion">
+                <input type="text" class="form-control" name="direccion_proveedor" placeholder="Dirección" ng-model="nprovform.data.direccion_proveedor" autocomplete="off" />
+            </form-element>
+            <form-element label="Telefono">
+                <input type="text" class="form-control" name="telefono_proveedor" placeholder="Telefono" ng-model="nprovform.data.tel_proveedor" autocomplete="off" />
+            </form-element>
+            <form-element label="Email">
+                <input type="text" class="form-control" name="mail_proveedor" placeholder="E-mail" ng-model="nprovform.data.mail_proveedor" autocomplete="off" />
+            </form-element>
+            <form-element label="Web">
+                <input type="text" class="form-control" name="web_proveedor" placeholder="Web" ng-model="nprovform.data.web_proveedor" autocomplete="off" />
+            </form-element>
+            <form-element label="Observaciones">
+                <textarea class="form-control" name="observaciones_proveedor" placeholder="Observaciones" ng-model="nprovform.data.observaciones_proveedor" autocomplete="off"></textarea>
+            </form-element>
+			<div class="modal-footer">
+                <form-element label="">
+                    <div class="text-right">
+                        <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i> Cancelar</a>
+                        <button ng-click="guardarMarca(nmform.data);"
+                                ng-disabled="nmform.data.$invalid || enableUpdate"
+                                class="btn btn-sm btn-primary"
+                                type="submit">
+                            <i class="ace-icon fa fa-check"></i> Guardar Marca
+                        </button>
+                    </div>
+                </form-element>
+            </div>
+		</form>
+	</div>

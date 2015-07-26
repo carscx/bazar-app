@@ -1,0 +1,62 @@
+<!--<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(producto);">&nbsp;Add New Product</button>-->
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+ 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+<div class="btn-group">
+	<button type="button" class="btn btn-info" ng-click="openNuevaMarca()">Añadir Marca <i class="fa fa-plus-square"></i></button>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="col-md-2">
+			<select ng-model="entryLimit" class="form-control">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+		</div>
+		<div class="col-md-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+				<input type="text" ng-model="search" ng-change="filter()" placeholder="Buscar marcas..." class="form-control" autocomplete="off" focus>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+		<table class="table table-striped">
+			<tr ng-show="marcas.length==0">
+				<td style="vertical-align:middle;"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i>&nbsp;Estamos trayendo las marcas</td>
+			</tr>
+			<thead ng-show="marcas.length>0">
+				<th><a ng-click="sort_by('id_marca');" tooltip-placement="top" tooltip="Ordenar por Id">Id <i class="fa fa-sort"></i></a></th>
+				<th><a ng-click="sort_by('nombre_marca');" tooltip-placement="top" tooltip="Ordenar por Nombre">Nombre <i class="fa fa-sort"></i></a></th>
+				<th class="col-accion text-right"><span>Acciones</span></th>
+			</thead>
+			<tr ng-repeat="m in filtered = (marcas | filter:ignoreAccents | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+				<td>{{m.id_marca}}</td>
+				<td>{{m.nombre_marca}}</td>
+				<td>
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-success" ng-click="open(m,'');" tooltip-placement="top" tooltip="Editar Marca"><i class="fa fa-edit"></i></button>
+						<button type="button" class="btn btn-danger" ng-click="borrar(m);" tooltip-placement="top" tooltip="Eliminar Marca" tooltip-class="tooltip-eliminar"><i class="fa fa-trash-o"></i></button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4 class="text-center"><i class="fa fa-search fa-3x fa-spin"></i> No hay marcas con ese nombre</h4>
+            </div>
+        </div>
+		<div class="col-md-12" ng-show="filteredItems > 0">
+        	<pagination total-items="filteredItems" ng-model="currentPage" max-size="10" class="pagination-lg" boundary-links="true" previous-text="&laquo;" next-text="&raquo;" first-text="Primero" last-text="Último"></pagination>
+        	<div class="clearfix"></div>
+        	<p>Mostrando {{ entryLimit }} de {{marcas.length}} marcas</p>
+    	</div>
+	</div>
+</div>
+

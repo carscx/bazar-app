@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="bazar" ng-controller="main-controller">
+<meta charset="utf8">
+<body ng-cloak>
+	<base href="/">
+	<title ng-bind="$root.title + ' - Bazar Gestión'">Cargando...</title>
+	<meta name="Description" content="Bazar Gestion">
+
+	<link rel="stylesheet" href="css/lib/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-roboto-local.css"  type="text/css" />
+	<link rel="stylesheet" href="css/digi-font.css"  type="text/css" />
+	<link rel="stylesheet" href="css/lib/bootstrap-paper.min.css"  type="text/css" />
+	<link rel="stylesheet" href="css/estilos.css"  type="text/css" />
+	<header>
+		<nav class="navbar navbar-primary navbar-fixed-top">
+			<div class="container">
+				<div class="col-md-4">
+					<ul class="nav navbar-nav">
+						<li><a ng-href="/#/" tooltip-placement="bottom" tooltip="Inicio"><i class="fa fa-home fa-2x"></i></a></li>
+						<li><a ng-href="/#/productos" tooltip-placement="bottom" tooltip="Productos"><i class="fa fa-archive fa-2x"></i></a></li>
+						<li><a ng-href="/#/marcas" tooltip-placement="bottom" tooltip="Marcas"><i class="fa fa-sun-o fa-2x"></i></a></li>
+						<li><a ng-href="/#/proveedores" tooltip-placement="bottom" tooltip="Proveedores"><i class="fa fa-truck fa-2x"></i></a></li>
+						<li><a ng-href="/#/devolucion" tooltip-placement="bottom" tooltip="Devolución"><i class="fa fa-exchange fa-2x"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 text-center">
+					<h1>{{$root.title}}</h1>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</nav>
+	</header>
+	<section id="content">
+		<div class="container">
+			<div class="btn-group" style="width: 100%">
+				<label class="btn btn-success btn-lg" style="width: 50%" tooltip-placement="top" tooltip="Nueva Venta"><a ng-href="/#/nueva-venta">Nueva Venta <i class="fa fa-money"></i></a></label>
+				<label class="btn btn-primary btn-lg" style="width: 50%" tooltip-placement="top" tooltip="Nuevo Producto"><a ng-href="/#/nuevo-producto">Nuevo Producto <i class="fa fa-plus-square"></i></a> </label>
+			</div>
+			<p></p>
+			<div ng-view="" id="ng-view"></div>
+		</div>
+	</section>
+
+<!-- Librerias -->
+<script src="js/lib/angular.min.js"></script>
+<!--<script src="js/lib/ui-bootstrap-tpls-0.10.min.js"></script>-->
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script src="js/lib/angular-resource.min.js"></script>
+<script src="js/lib/angular-route.min.js"></script>
+<script src="js/lib/angular-animate.min.js"></script>
+<script src="js/lib/angular-locale_es-ar.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<!-- AngularJS custom codes -->
+<script src="app/config/bazar-app.js"></script>
+<script src="app/services/services.js"></script>
+<script src="app/directives/directives.js"></script>
+<script src="app/filters/filters.js"></script>
+<script src="app/controllers/main-controller.js"></script>
+<script src="app/controllers/inicio-controller.js"></script>
+<script src="app/controllers/ventas/nueva-venta-controller.js"></script>
+<script src="app/controllers/ventas/venta-producto-controller.js"></script>
+<script src="app/controllers/productos/productos-controller.js"></script>
+<script src="app/controllers/productos/edita-producto-controller.js"></script>
+<script src="app/controllers/productos/nuevo-producto-controller.js"></script>
+<script src="app/controllers/marcas/marcas-controller.js"></script>
+<script src="app/controllers/marcas/edita-marca-controller.js"></script>
+<script src="app/controllers/marcas/nueva-marca-controller.js"></script>
+<script src="app/controllers/proveedores/proveedores-controller.js"></script>
+<script src="app/controllers/proveedores/edita-proveedor-controller.js"></script>
+<script src="app/controllers/proveedores/nuevo-proveedor-controller.js"></script>
+<script src="app/controllers/devolucion/devolucion-controller.js"></script>
+<script src="app/controllers/devolucion/confirma-devolucion-controller.js"></script>
+</body>
+</html>

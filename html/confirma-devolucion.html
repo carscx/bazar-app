@@ -1,0 +1,58 @@
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+
+    <button type="button" class="close" ng-click="cancel();">
+        <i class="fa fa-times-circle-o"></i>
+    </button>
+    <div class="modal-header">
+        <h3 class="modal-title">Confirmar devolución</h3>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2 class="total-devolucion" data-total-devolucion="{{getTotalDevolucion(devform.data.dtoEnPesos,devform.data.interesTarjeta)}}">Total Diferencia a pagar: {{getTotalDevolucion(devform.data.dtoEnPesos,devform.data.interesTarjeta) | currency}}</h2>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row row-eq-height">
+                    <form name="devform">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <select ng-model="devform.data.medioCobro" class="form-control input-lg">
+                            <option value="">Forma de Pago</option>
+                            <option ng-value="{{mc.id_mcobro}}" ng-repeat="mc in mediosCobro" ng-selected="{{mc.nombre_mcobro == 'Efectivo'}}">{{mc.nombre_mcobro}}</option>
+                        </select>
+                        <div class="dtoBox">
+                            <input type="text" name="dtoEnPesos" class="form-horizontal input-lg" id="dtoEnPesos" ng-model="devform.data.dtoEnPesos" value="" placeholder="Descuento en pesos" only-numbers>
+                        </div>
+                        <div class="cuotasBox" ng-show="devform.data.medioCobro != 3">
+                            <div class="col-xs-6" ng-show="devform.data.medioCobro == 2 || devform.data.medioCobro == 5">
+                                <select ng-model="devform.data.cuotasTarjeta" ng-options="o as o for o in cuotas" ng-init="devform.data.cuotasTarjeta = cuotas[0]" class="form-control input-lg"></select>
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" ng-show="devform.data.cuotasTarjeta > 3" name="interesTarjeta" id="interesTarjeta" class="form-horizontal input-lg" ng-model="devform.data.interesTarjeta" value="" placeholder="Interés %" only-numbers>
+                            </div>
+                            <div class="col-xs-12">
+                                <p class="pcuotas" ng-show="devform.data.cuotasTarjeta >= 2">{{devform.data.cuotasTarjeta}} pagos de {{getCuotasDevolucion(devform.data.cuotasTarjeta,devform.data.dtoEnPesos,devform.data.interesTarjeta,devform.data.pmCobradoTarjetaDev) | currency}}</p>
+                            </div>
+                        </div>
+                        <div class="pagoMixtoBox" ng-show="devform.data.medioCobro == 4 || devform.data.medioCobro == 5">
+                            <pago-mixto-devolucion></pago-mixto-devolucion>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-success">
+            <div class="panel-body">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-lg" ng-click="cancel()">Continuar devolviendo</button>
+                    <button type="button" class="btn btn-success btn-lg" ng-click="guardarDevolucion(devform.data)">Confirmar Devolución</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

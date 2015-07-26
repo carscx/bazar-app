@@ -1,0 +1,187 @@
+body{
+  font-family: "Roboto", arial, verdana, serif;
+  font-size: 1.2em;
+}
+/* ng-cloak */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng.ng-cloak {
+    display: none;
+}
+
+input:focus {outline: 0;}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+  outline: none;
+}
+
+
+header h1 {
+    background: #9b59b6;
+    color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    display: block;
+    font-size: 2.4em;
+    margin:0;
+    line-height: 75px;
+    height: 75px;
+    position: absolute;
+    width: 100%;
+}
+
+header nav {background: #2196F3;}
+
+header nav .navbar-nav a {color: #FFFFFF;}
+header nav .navbar-nav a:hover {background: #72C2FF; color: #FFFFFF;}
+
+label.btn {padding:0;}
+.btn a {color: #fff;display: block;padding: 10px;}
+.btn a:hover,.btn a:focus,.btn a:active {text-decoration: none; outline: 0;}
+
+#content {margin-top: 100px;}
+
+.pagination-lg {cursor:pointer; float: right;}
+
+.table thead th {
+	line-height: .5em !important;
+	padding: 0 !important;
+}
+.table thead a, .table thead span {
+	cursor: pointer;
+	color: #2196f3;
+	display: block;
+	line-height: 1em !important;
+	padding: 10px;
+}
+
+.table td {
+    vertical-align: middle !important;
+    font-size: 1.2em;
+}
+
+form[name="npform"] select {
+    color: #444;
+}
+form[name="npform"] select option {
+    color: #444;
+}
+
+
+.fechaDeHoy {
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    -webkit-box-shadow: 0px 0px 20px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px 8px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px 8px rgba(0,0,0,0.75);
+    border-top: 4px solid #4caf50;
+    display: block;
+    height: 150px;
+    margin: 30px auto 0;
+    width: 400px;
+}
+
+.fechaDeHoy span {
+    color: #444;
+    display: inline-block;
+    font-family: 'ds-digitalnormal';
+    font-size: 6em;
+    line-height: 1em;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+    word-wrap: break-word;
+}
+
+.fechaDeHoy .fecha {width: 100%;}
+.fechaDeHoy .hora {
+    float: left;
+    text-align: right;
+    width: 60%;
+}
+.fechaDeHoy .segundos {
+    float: left;
+    font-size: 3em;
+    margin: 30px 0 0 0;
+    text-align: left;
+    width: 20%;
+}
+
+.alert i, .alert h2 {
+    color: #fff;
+    margin: 0;
+}
+.alert {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    margin: 30px 0;
+    text-align: center;
+    width: 100%;
+}
+
+
+.modal-title {font-size: 2em;}
+
+.seleccionado {background: #ccc !important;}
+
+.email_prov {word-wrap: break-word;}
+
+.col-id {min-width: 40px;}
+.col-nombre {min-width: 200px;}
+.col-accion {min-width: 110px;}
+
+.modal-venta {width: 850px;}
+
+
+.table.tabla-confirma-venta thead th {
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+.close {color: #2574A9; margin: 10px;}
+
+.total-venta {font-size: 2em; margin: 0;}
+
+.cuotasBox div {padding: 0;}
+.cuotasBox select {width: 100px;}
+.cuotasBox .pcuotas {
+    line-height: 32px;
+    margin: 10px 0 0 0;
+    text-align: left;
+    width: 100%;
+}
+.pagoMixtoBox div {padding: 0;}
+.pagoMixtoBox div input {width: 100px; text-align: right;}
+
+.tooltip.tooltip-eliminar .tooltip-inner {background: rgba(236, 44, 44, 1);}
+.tooltip.tooltip-eliminar .tooltip-arrow {border-top-color: rgba(236, 44, 44, 1);}
+
+
+.lista-devolucion input {width: 100%;}
+
+.lista-devolucion p {
+    font-size: 1.5em;
+    line-height: 50px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.box-devolucion h2 {margin: 15px 0; font-size: 1.8em;}
+.box-devolucion h3 {margin: 10px 0; font-size: 1.5em;}

@@ -1,0 +1,39 @@
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+ 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+
+<form name="npform" class="form-horizontal" role="form" novalidate>
+
+	<form-element label="Nombre">
+		<input type="text" class="form-control" name="nombre_producto" placeholder="Nombre" ng-model="npform.data.nombre_producto" autocomplete="off" focus/>
+	</form-element>
+	<form-element label="Precio Costo">
+		<input type="text" class="form-control" name="pcosto_producto" placeholder="Precio Costo" ng-model="npform.data.pcosto_producto" autocomplete="off" only-numbers/>
+	</form-element>
+	<form-element label="Precio Final">
+		<input type="text" class="form-control" name="precio_producto" placeholder="Precio Final" ng-model="npform.data.precio_producto" autocomplete="off" only-numbers/>
+	</form-element>
+	<form-element label="Marca">
+		<select ng-model="npform.data.id_marca" class="form-control">
+			<option value="" disabled selected>Seleccione una Marca</option>
+			<option ng-value="{{m.id_marca}}" ng-repeat="m in marcas">{{m.nombre_marca}}</option>
+		</select>
+	</form-element>
+	<form-element label="Proveedor">
+		<select ng-model="npform.data.id_proveedor" class="form-control">
+			<option value="" disabled selected>Seleccione un Proveedor</option>
+			<option ng-value="{{prov.id_proveedor}}" ng-repeat="prov in proveedores">{{prov.nombre_proveedor}}</option>
+		</select>
+	</form-element>
+	<form-element label="Cantidad">
+		<input type="text" class="form-control" name="cantidad_producto" placeholder="Cantidad" ng-model="npform.data.cantidad_producto" only-numbers autocomplete="off" />
+	</form-element>
+	<form-element label="Observaciones">
+		<textarea class="form-control" name="observaciones_producto" placeholder="Observaciones" ng-model="npform.data.observaciones_producto" autocomplete="off"></textarea>
+	</form-element>
+	<div class="col-sm-10 text-right">
+		<!-- <button type="submit" class="btn btn-success btn-lg" ng-click="guardarProducto(npform.data,1)">Guardar y Salir</button> -->
+		<button type="submit" class="btn btn-success btn-lg" ng-click="guardarProducto(npform.data)">Guardar Producto</button>
+	</div>
+</form>

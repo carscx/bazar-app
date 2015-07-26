@@ -1,0 +1,96 @@
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+ 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+
+<div class="panel panel-default box-devolucion">
+	<div class="panel-body">
+		<div class="col-lg-12">
+			<h3>Productos a devolver:</h3>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<input type="text" class="form-horizontal input-lg" placeholder="AA1234" ng-model="codigoProducto" ng-enter="consultaCodigo(codigoProducto)" mayusculas>
+					<span class="input-group-addon">
+						<button type="button" class="btn btn-primary" ng-click="consultaCodigo(codigoProducto)">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<ul class="list-unstyled lista-devolucion" ng-show="devolucion.productosADevolver.length > 0">
+				<li ng-repeat="pad in devolucion.productosADevolver">
+					<div class="col-lg-3">
+						<p>{{pad.codigoProducto}}</p>
+					</div>
+					<div class="col-lg-4">
+						<p title="{{pad.nombreProducto}}">{{pad.nombreProducto}}</p>
+					</div>
+					<div class="col-lg-2">
+						<input type="number" name="cantidadProducto" ng-model="pad.cantidadProducto" class="input-lg text-center" value="" placeholder="Cantidad" only-numbers>
+					</div>
+					<div class="col-lg-2">
+						<p class="text-center"><strong>{{pad.precioProducto*pad.cantidadProducto | currency}}</strong></p>
+					</div>
+					<div class="col-lg-1">
+						<button type="button" class="btn btn-danger" ng-click="eliminaProducto(index,devolucion.productosADevolver)" tooltip-placement="top" tooltip="Eliminar Producto" tooltip-class="tooltip-eliminar"><i class="fa fa-trash"></i></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-12" ng-show="devolucion.productosADevolver.length > 0">
+			<h2 class="text-right">Total de Devolución: {{getTotalDev() | currency}}</h2>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default box-devolucion" ng-show="devolucion.productosADevolver.length > 0">
+	<div class="panel-body">
+		<div class="col-lg-12">
+			<h3>Productos que retira:</h3>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<input type="text" class="form-horizontal input-lg" placeholder="AA1234" ng-model="codigoProductoRetira" ng-enter="consultaCodigoRetira(codigoProductoRetira)" mayusculas>
+					<span class="input-group-addon">
+						<button type="button" class="btn btn-primary" ng-click="consultaCodigoRetira(codigoProductoRetira)">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<ul class="list-unstyled lista-devolucion" ng-show="devolucion.productosQRetira.length > 0">
+				<li ng-repeat="pad in devolucion.productosQRetira">
+					<div class="col-lg-3">
+						<p>{{pad.codigoProductoRetira}}</p>
+					</div>
+					<div class="col-lg-4">
+						<p>{{pad.nombreProductoRetira}}</p>
+					</div>
+					<div class="col-lg-2">
+						<input type="number" name="cantidadProducto" ng-model="pad.cantidadProductoRetira" class="input-lg text-center" value="" placeholder="Cantidad" only-numbers>
+					</div>
+					<div class="col-lg-2">
+						<p class="text-center"><strong>{{pad.precioProductoRetira*pad.cantidadProductoRetira | currency}}</strong></p>
+					</div>
+					<div class="col-lg-1">
+						<button type="button" class="btn btn-danger" ng-click="eliminaProducto(index,devolucion.productosQRetira)" tooltip-placement="top" tooltip="Eliminar Producto" tooltip-class="tooltip-eliminar"><i class="fa fa-trash"></i></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="col-lg-12" ng-show="devolucion.productosQRetira.length > 0">
+			<h2 class="text-right">Total de Devolución: {{getTotalRetira() | currency}}</h2>
+		</div>
+	</div>
+</div>
+
+
+<div class="panel panel-default box-total-devolucion" ng-show="devolucion.productosQRetira.length > 0">
+	<div class="panel-body">
+		<div class="col-lg-12">
+			<h2 class="text-right" >Diferencia: {{getTotalRetira()-getTotalDev() | currency}}</h2>
+			<button type="button" class="btn btn-success btn-lg pull-right" ng-disabled="getTotalDev() > getTotalRetira()" ng-click="confirmarDevolucion()" tooltip-placement="top" tooltip="Confirmar Devolución">Confirmar Devolución</button>
+		</div>
+	</div>
+</div>

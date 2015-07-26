@@ -1,0 +1,77 @@
+<!--<button type="button" class="btn btn-danger fa fa-plus" ng-click="open(producto);">&nbsp;Add New Product</button>-->
+<div class="alert {{claseMensaje}}" ng-show="resultado">
+ 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h2><i class="fa {{icoMensaje}}"></i> {{mensaje}}</h2>
+</div>
+<div class="btn-group">
+	<button type="button" class="btn btn-info" ng-click="actualizar()"><i class="fa fa-refresh"></i> Actualizar Productos</button>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="col-md-2">
+			<select ng-model="entryLimit" class="form-control">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+		</div>
+		<div class="col-md-10">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+				<input type="text" ng-model="search" ng-change="filter()" placeholder="Buscar productos..." class="form-control" autocomplete="off" focus>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body" id="tabla-productos">
+		<div class="col-md-12">
+		<table class="table table-striped">
+			<tr ng-show="productos.length==0">
+				<td style="vertical-align:middle;"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i>&nbsp;Estamos trayendo los productos</td>
+			</tr>
+			<thead ng-show="productos.length>0">
+				<th><a ng-click="sort_by('id_producto');" tooltip-placement="top" tooltip="Ordenar por Id">Id <i class="fa fa-sort"></i></a></th>
+				<th><a ng-click="sort_by('nombre_producto');" tooltip-placement="top" tooltip="Ordenar por Nombre">Nombre <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('nombre_marca');" tooltip-placement="top" tooltip="Ordenar por Marca">Marca <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('id_proveedor');" tooltip-placement="top" tooltip="Ordenar por Proveedor"> Proveedor <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('pcosto_producto');" tooltip-placement="top" tooltip="Ordenar por Precio de Costo">P.Costo <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('precio_producto');" tooltip-placement="top" tooltip="Ordenar por Precio al Público">PVP <i class="fa fa-sort"></i></a></th>
+				<th class="text-center"><a ng-click="sort_by('cantidad_producto');" tooltip-placement="top" tooltip="Ordenar por Cantidad">Cantidad <i class="fa fa-sort"></i></a></th>
+				<!--<th class="text-center"><a ng-click="sort_by('fecha_alta_producto');">Fecha de alta <i class="fa fa-sort"></i></a></th>-->
+				<th class="text-center"><a ng-click="sort_by('codigo_control');" tooltip-placement="top" tooltip="Ordenar por Código de Control">Código <i class="fa fa-sort"></i></a></th>
+				<th class="col-accion"><span>Acciones</span></th>
+			</thead>
+			<tr ng-repeat="p in filtered = (productos | filter:ignoreAccents | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			<!--<tr ng-repeat="p in productos | miBusqueda:search">-->
+				<td>{{p.id_producto}}</td>
+				<td>{{p.nombre_producto}}</td>
+				<td class="text-center">{{p.nombre_marca}}</td>
+				<td class="text-center">{{p.nombre_proveedor}}</td>
+				<td class="text-center">{{p.pcosto_producto | currency}}</td>
+				<td class="text-center">{{p.precio_producto | currency}}</td>
+				<td class="text-center">{{p.cantidad_producto}}</td>
+				<!--<td class="text-center">{{p.fecha_alta_producto | badDateToISO | date:'short'}}</td>-->
+				<td class="text-center">{{p.codigo_control}}</td>
+				<td>
+					<div class="btn-group pull-right">
+						<button type="button" class="btn btn-success" ng-click="open(p,'lg');" tooltip-placement="top" tooltip="Editar Producto"><i class="fa fa-edit"></i></button>
+						<button type="button" class="btn btn-danger" ng-click="borrar(p);" tooltip-placement="top" tooltip="Eliminar Producto" tooltip-class="tooltip-eliminar"><i class="fa fa-trash-o"></i></button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4 class="text-center"><i class="fa fa-search fa-3x fa-spin"></i> No hay productos con ese nombre</h4>
+            </div>
+        </div>
+		<div class="col-md-12" ng-show="filteredItems > 0">
+		    <pagination total-items="filteredItems" ng-model="currentPage" max-size="10" class="pagination-lg" boundary-links="true" previous-text="&laquo;" next-text="&raquo;" first-text="Primero" last-text="Último"></pagination>
+        	<div class="clearfix"></div>
+        	<p>Mostrando {{ entryLimit }} de {{productos.length}} productos</p>
+    	</div>
+	</div>
+</div>
+
