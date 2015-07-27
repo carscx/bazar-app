@@ -15,7 +15,7 @@ bazar.app.factory('ServiceMarcas', function($resource) {
 
 bazar.app.factory('ServiceProveedores', function($resource) {
   return $resource('/api/v1/proveedores/:id_proveedor',
-    { id_marca:'@id_proveedor' },
+    { id_proveedor:'@id_proveedor' },
     { update: { method: 'PUT' }}
   );
 });

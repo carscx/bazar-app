@@ -63,21 +63,21 @@ bazar.app.controller('proveedores-controller', [
 
 	//BORRADO
 
-	$scope.borrar = function(producto){
-		if(confirm("Seguro quieres eliminar este producto?\n"+producto.nombre_producto)){
-			$scope.id_producto = producto.id_producto;
-			producto.$delete({id_producto: $scope.id_producto}, function success(data) {
+	$scope.borrar = function(proveedor){
+		if(confirm("Seguro quieres eliminar este proveedor?\n"+proveedor.nombre_proveedor)){
+			$scope.id_proveedor = proveedor.id_proveedor;
+			proveedor.$delete({id_proveedor: $scope.id_proveedor}, function success(data) {
 				$scope.resultado = true;
 				$scope.respuesta = data;
 				$scope.claseMensaje = "alert-success";
 				$scope.icoMensaje = "fa-check";
 				$scope.mensaje = $scope.respuesta.Mensaje;
 				if($scope.mensaje === 1){
-					$scope.mensaje = "Se ha eliminado el producto correctamente";
+					$scope.mensaje = "Se ha eliminado el proveedor correctamente";
 				};
 				console.log($scope.respuesta.Mensaje);
 				$window.scrollTo(0,0);
-				$scope.cargarProductos();
+				$scope.cargarProveedores();
 				$timeout(function() {
 					$scope.resultado = false;
 				}, 2500);
